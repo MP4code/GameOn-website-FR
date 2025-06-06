@@ -13,6 +13,7 @@ const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
 
 
+
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 
@@ -32,29 +33,28 @@ function closeModal() {
 
 // Form Data 
 
-function formDataInput() {
-  let Data = {};
-  const firstName = formData[0].value;
-  const lastName = formData[1].value;
-  const email = formData[2].value;
-  const birthdate = formData[3].value;
-  const quantity = formData[4].value;
-  const location = formData[5].value;
-  const checkbox = formData[6].checked;
-  Data = {
-    firstName: firstName,
-    lastName: lastName,
-    email: email,
-    birthdate: birthdate,
-    quantity: quantity,
-    location: location,
-    checkbox: checkbox
-  };
-  return Data;
-}
 
 //validate
-function validate(Data) {
-  alert(Data + "Merci pour votre inscription");
+function validate() {
+  let Data = {};
+  const firstName = document.getElementById("first").value;
+  const lastName = document.getElementById("last").value;
+  const email = document.getElementById("email").value;
+  const birthdate = document.getElementById("birthdate").value;
+  const quantity = document.getElementById("quantity").value;
+  const location = document.getElementById("location").value;
+  const checkbox = document.getElementById("checkbox").checked;
 
+  Data = {
+    firstName,
+    lastName,
+    email,
+    birthdate,
+    quantity,
+    location,
+    checkbox
+  };
+
+
+  alert(JSON.stringify(Data, null, 2));
 }
