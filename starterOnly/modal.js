@@ -13,7 +13,6 @@ const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
 
 
-
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 
@@ -31,30 +30,34 @@ function closeModal() {
   modalbg.style.display = "none";
 }
 
-// Form Data 
-
-
 //validate
-function validate() {
-  let Data = {};
-  const firstName = document.getElementById("first").value;
-  const lastName = document.getElementById("last").value;
-  const email = document.getElementById("email").value;
-  const birthdate = document.getElementById("birthdate").value;
-  const quantity = document.getElementById("quantity").value;
-  const location = document.getElementById("location").value;
-  const checkbox = document.getElementById("checkbox").checked;
+function validate(e) {
+  e.preventDefault();
 
-  Data = {
-    firstName,
-    lastName,
-    email,
-    birthdate,
-    quantity,
-    location,
-    checkbox
-  };
+  // Récupération des éléments du formulaire 
+  const firstName = document.querySelector("#first");
+  const lastName = document.querySelector("#last");
+  const email = document.querySelector("#email");
+  const birthdate = document.querySelector("#birthdate");
+  const quantity = document.querySelector("#quantity");
+  const selectedLocation = document.querySelector("#location");
+  const checkbox = document.querySelector("#checkbox");
+
+  if (firstName.value.trim() === "") {
+    firstName.parentElement.setAttribute("data-error", "Le prénom est requis");
+    firstName.parentElement.setAttribute("data-error-visible", "true");
+  } else {
+    firstName.parentElement.removeAttribute("data-error");
+    firstName.parentElement.setAttribute("data-error-visible", "false");
+  }
 
 
-  alert(JSON.stringify(Data, null, 2));
+  if (lastName.value.trim() === "") {
+    lastName.parentElement.setAttribute("data-error", "Le nom est requis");
+    lastName.parentElement.setAttribute("data-error-visible", "true");
+  } else {
+    lastName.parentElement.removeAttribute("data-error");
+    lastName.parentElement.setAttribute("data-error-visible", "false");
+  }
+
 }
