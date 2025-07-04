@@ -33,6 +33,22 @@ closeBtn.addEventListener("click", closeModal);
 // close modal form
 function closeModal() {
   modalbg.style.display = "none";
+  modalValidation.style.display = "none";
+  modalbgValidation.style.display = "none";
+}
+
+// close modal validation
+const closeBtnValidation = document.querySelector(".btn-close-modal");
+closeBtnValidation.addEventListener("click", closeModalValidation);
+
+// close modal validation form
+const closeValidation = document.querySelector(".closeValidation");
+closeValidation.addEventListener("click", closeModalValidation);
+
+function closeModalValidation() {
+  modalbgValidation.style.display = "none";
+  modalValidation.style.display = "none";
+  modalbg.style.display = "none";
 }
 
 //validate
@@ -47,46 +63,56 @@ function validate(e) {
   const checkbox1 = document.querySelector("#checkbox1");
   const radios = document.getElementsByName("locationTournoi");
   let checked = false;
-  let formValid = true;
+  let firstNameValid = false;
+  let lastNameValid = false;
+  let emailValid = false;
+  let birthdateValid = false;
+  let NbrTournoiValid = false;
+  let locationTournoiValid = false;
+  let checkbox1Valid = false;
+
+
   // Vérification du prénom
   if (firstName.value.trim().length < 2) {
     formData[0].setAttribute("data-error-visible", "true");
-    formValid = false;
+    firstNameValid = false;
   } else {
     formData[0].setAttribute("data-error-visible", "false");
-
+    firstNameValid = true;
   }
   // Vérification du nom
   if (lastName.value.trim().length < 2) {
     formData[1].setAttribute("data-error-visible", "true");
-    formValid = false;
+    lastNameValid = false;
   }
   else {
     formData[1].setAttribute("data-error-visible", "false");
+    lastNameValid = true;
   }
   // Vérification de l'e-mail
   if (email.value.trim().length < 2) {
     formData[2].setAttribute("data-error-visible", "true");
-    formValid = false;
+    emailValid = false;
   }
   else {
     formData[2].setAttribute("data-error-visible", "false");
+    emailValid = true;
   }
   // Vérification de la date de naissance 
   if (birthdate.value.trim() === "") {
     formData[3].setAttribute("data-error-visible", "true");
-    formValid = false;
-  }
-  else {
+    birthdateValid = false;
+  } else {
     formData[3].setAttribute("data-error-visible", "false");
+    birthdateValid = true;
   }
   // Vérification du nombre de tournoi
   if (NbrTournoi.value.trim() === "") {
     formData[4].setAttribute("data-error-visible", "true");
-    formValid = false;
-  }
-  else {
+    NbrTournoiValid = false;
+  } else {
     formData[4].setAttribute("data-error-visible", "false");
+    NbrTournoiValid = true;
   }
   // Vérification du Lieu du prochain tournoi
   for (let radio of radios) {
@@ -98,18 +124,21 @@ function validate(e) {
 
   if (checked) {
     formData[5].setAttribute("data-error-visible", "false");
-    formValid = false;
+    locationTournoiValid = true;
+
   } else {
     formData[5].setAttribute("data-error-visible", "true");
-
+    locationTournoiValid = false;
   }
   // Vérification des conditions d'utilisation
   if (!checkbox1.checked) {
     formData[6].setAttribute("data-error-visible", "true");
-    formValid = false;
+    checkbox1Valid = false;
+
 
   } else {
     formData[6].setAttribute("data-error-visible", "false");
+    checkbox1Valid = true;
 
   }
 
@@ -125,7 +154,7 @@ function validate(e) {
   console.log("Validation du formulaire");
 
   // Afficher la modal de validation si tout est valide
-  if (!formValid) {
+  if (firstNameValid === true && lastNameValid === true && emailValid === true && birthdateValid === true && NbrTournoiValid === true && locationTournoiValid === true && checkbox1Valid === true) {
     e.preventDefault();
     modalbg.style.display = "none";
     modalbgValidation.style.display = "block";
