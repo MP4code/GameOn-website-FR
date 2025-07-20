@@ -35,6 +35,7 @@ function closeModal() {
   modalbg.style.display = "none";
   modalValidation.style.display = "none";
   modalbgValidation.style.display = "none";
+  form.reset(); // Réinitialise tous les champs du formulaire
 }
 
 // close modal validation
@@ -49,6 +50,7 @@ function closeModalValidation() {
   modalbgValidation.style.display = "none";
   modalValidation.style.display = "none";
   modalbg.style.display = "none";
+  form.reset(); // Réinitialise tous les champs du formulaire
 }
 
 //validate
