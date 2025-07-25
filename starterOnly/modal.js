@@ -72,6 +72,7 @@ function validate(e) {
   let NbrTournoiValid = false;
   let locationTournoiValid = false;
   let checkbox1Valid = false;
+  const regex = /^((?!\.)[\w\-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])$/;
 
 
   // Vérification du prénom
@@ -92,7 +93,7 @@ function validate(e) {
     lastNameValid = true;
   }
   // Vérification de l'e-mail
-  if (email.value.trim().length < 2) {
+  if (email.value.trim().length < 2 || !regex.test(email.value)) {
     formData[2].setAttribute("data-error-visible", "true");
     emailValid = false;
   }
